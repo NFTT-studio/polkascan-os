@@ -112,12 +112,13 @@ services:
     image: nftmart/node:mainnet
     hostname: nftmart-node
     volumes:
-      - './nftmart-data:/substrate'
+      - './nftmart-data:/data'
+      - ./mainnetRaw.json/:/mainnetRaw.json
     ports:
       - '30333:30333'
       - '9933:9933'
       - '9944:9944'
-    command: --dev --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --pruning=archive
+    command: --chain=/mainnetRaw.json --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
 
   explorer-gui:
     image: nftmart/pre-explorer-gui:latest

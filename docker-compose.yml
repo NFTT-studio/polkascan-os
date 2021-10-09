@@ -24,6 +24,8 @@ services:
       - SUBSTRATE_METADATA_VERSION=13
       - SUBSTRATE_STORAGE_BALANCE=Account
       - SUBSTRATE_STORAGE_INDICES=Accounts
+    ports:
+      - '8000:8000'
     depends_on:
       - mysql
       - nftmart-node
@@ -129,9 +131,9 @@ services:
         NETWORK_TOKEN_SYMBOL: NMT
         NETWORK_TOKEN_DECIMALS: 12
         NETWORK_COLOR_CODE: f19135
-        API_URL: http://127.0.0.1:8080/api/v1
+        API_URL: http://127.0.0.1:8000/api/v1
     ports:
-      - '8080:80'
+      - '3000:80'
     depends_on:
       - harvester-api
       - explorer-api

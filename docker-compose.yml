@@ -18,6 +18,7 @@ services:
       - DB_PASSWORD=root
       - DB_NAME=polkascan
       - SUBSTRATE_RPC_URL=http://nftmart-node:9933/
+    # - SUBSTRATE_RPC_URL=https://mainnet.nftmart.io/rpc/http
       - SUBSTRATE_ADDRESS_TYPE=12191
       - TYPE_REGISTRY=development
     # - TYPE_REGISTRY_FILE=app/type_registry/nftmart_mainnet_types.json
@@ -46,6 +47,7 @@ services:
       - DB_PASSWORD=root
       - DB_NAME=polkascan
       - SUBSTRATE_RPC_URL=http://nftmart-node:9933/
+    # - SUBSTRATE_RPC_URL=https://mainnet.nftmart.io/rpc/http
       - TYPE_REGISTRY=development
       - SUBSTRATE_ADDRESS_TYPE=12191
       - SUBSTRATE_METADATA_VERSION=13
@@ -116,7 +118,8 @@ services:
       - '30333:30333'
       - '9933:9933'
       - '9944:9944'
-    command: --chain=/mainnetRaw.json --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
+    command: --dev --alice --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
+  # command: --chain=/mainnetRaw.json --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
 
   explorer-gui:
     image: nftmart/pre-explorer-gui:latest

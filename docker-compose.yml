@@ -133,9 +133,19 @@ services:
         NETWORK_TOKEN_SYMBOL: NMT
         NETWORK_TOKEN_DECIMALS: 12
         NETWORK_COLOR_CODE: f19135
-        API_URL: http://127.0.0.1:3000/api/v1
+      # API_URL: http://127.0.0.1:3000/api/v1
+        API_URL: /api/v1
     ports:
       - '3000:80'
     depends_on:
       - harvester-api
       - explorer-api
+
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: mysql
+      ADMINER_DEFAULT_DB_HOST: mysql
+      ADMINER_DEFAULT_DB_NAME: polkascan
+    ports:
+      - 8090:8080

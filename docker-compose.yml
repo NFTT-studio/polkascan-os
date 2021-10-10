@@ -47,7 +47,7 @@ services:
       - DB_NAME=polkascan
       - SUBSTRATE_RPC_URL=http://nftmart-node:9933/
       - TYPE_REGISTRY=development
-      - SUBSTRATE_ADDRESS_TYPE=42
+      - SUBSTRATE_ADDRESS_TYPE=12191
       - SUBSTRATE_METADATA_VERSION=13
       - NEW_SESSION_EVENT_HANDLER=True
       - SUBSTRATE_STORAGE_BALANCE=Account

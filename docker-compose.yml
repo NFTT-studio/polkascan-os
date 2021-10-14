@@ -115,19 +115,39 @@ services:
       - './nftmart-data:/data'
       - ./mainnetRaw.json/:/mainnetRaw.json
     ports:
-      - '30333:30333'
+  #   - '30333:30333'
       - '9933:9933'
       - '9944:9944'
-    command: --dev --alice --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
-  # command: --chain=/mainnetRaw.json --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
+  # command: --dev --alice --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
+    command: --chain=/mainnetRaw.json --base-path=/data --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external --rpc-methods=Unsafe --validator
 
   explorer-gui:
     image: nftmart/pre-explorer-gui:latest
     build:
       context: explorer-gui/.
       args:
-        NETWORK_NAME: NFTMart
-        NETWORK_ID: nftmart
+        NETWORK_NAME: Mainnet
+        NETWORK_ID: mainnet
+        NETWORK_TYPE: pre
+        CHAIN_TYPE: relay
+        NETWORK_TOKEN_SYMBOL: NMT
+        NETWORK_TOKEN_DECIMALS: 12
+        NETWORK_COLOR_CODE: f19135
+      # API_URL: http://127.0.0.1:3000/api/v1
+        API_URL: /api/v1
+    ports:
+      - '3000:80'
+    depends_on:
+      - harvester-api
+      - explorer-api
+
+  explorer-gui-staging:
+    image: nftmart/pre-explorer-gui:staging
+    build:
+      context: explorer-gui/.
+      args:
+        NETWORK_NAME: Staging
+        NETWORK_ID: staging
         NETWORK_TYPE: pre
         CHAIN_TYPE: relay
         NETWORK_TOKEN_SYMBOL: NMT
